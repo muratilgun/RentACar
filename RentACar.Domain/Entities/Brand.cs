@@ -4,7 +4,7 @@ namespace RentACar.Domain.Entities;
 
 public class Brand : Entity<Guid>
 {
-    public string Name { get; set; }
+    public string Name { get; set; } = default!;
     public Brand() { }
     public Brand(Guid id, string name)
     {
