@@ -3,6 +3,7 @@ using Core.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RentACar.Application.Features.Brands.Commands.Create;
+using RentACar.Application.Features.Brands.Queries.GetById;
 using RentACar.Application.Features.Brands.Queries.GetList;
 
 namespace RentACar.Api.Controllers;
@@ -22,6 +23,14 @@ public class BrandsController : BaseController
     {
         GetListBrandQuery query = new GetListBrandQuery { PageRequest = pageRequest };
         GetListResponse<GetListBrandListItemDto> response = await Mediator.Send(query);
+        return Ok(response);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById([FromRoute] Guid id)
+    {
+        GetByIdBrandQuery query = new GetByIdBrandQuery { Id = id };
+        GetByIdBrandResponse response = await Mediator.Send(query);
         return Ok(response);
     }
 }
