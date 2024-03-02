@@ -27,7 +27,6 @@ public class CreateBrandCommand : IRequest<CreatedBrandResponse>
         {
             Brand brand = _mapper.Map<Brand>(request);
             brand.Id = Guid.NewGuid();
-            brand.CreatedAt = DateTime.UtcNow;
 
             await _brandRepository.AddAsync(brand);
 

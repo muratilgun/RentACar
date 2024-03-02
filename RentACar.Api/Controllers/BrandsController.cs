@@ -3,6 +3,7 @@ using Core.Application.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RentACar.Application.Features.Brands.Commands.Create;
+using RentACar.Application.Features.Brands.Commands.Delete;
 using RentACar.Application.Features.Brands.Commands.Update;
 using RentACar.Application.Features.Brands.Queries.GetById;
 using RentACar.Application.Features.Brands.Queries.GetList;
@@ -39,6 +40,13 @@ public class BrandsController : BaseController
     public async Task<IActionResult> Update([FromQuery] UpdateBrandCommand updateBrandCommand)
     {
         UpdatedBrandResponse response = await Mediator!.Send(updateBrandCommand);
+        return Ok(response);
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> Delete([FromQuery] DeleteBrandCommand deleteBrandCommand)
+    {
+        DeletedBrandResponse response = await Mediator!.Send(deleteBrandCommand);
         return Ok(response);
     }
 }
