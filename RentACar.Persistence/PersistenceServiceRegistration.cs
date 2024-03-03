@@ -18,10 +18,15 @@ public static class PersistenceServiceRegistration
     {
         services.AddDbContext<BaseDbContext>(options =>
         {
-            options.UseInMemoryDatabase("RentACarDb");
-            //options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            //options.UseInMemoryDatabase("RentACarDb");
+            options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
         });
         services.AddScoped<IBrandRepository, BrandRepository>();
+        services.AddScoped<ICarRepository, CarRepository>();
+        services.AddScoped<IModelRepository, ModelRepository>();
+        services.AddScoped<IFuelRepository, FuelRepository>();
+        services.AddScoped<ITransmissionRepository, TransmissionRepository>();
+
 
 
 

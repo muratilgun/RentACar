@@ -9,7 +9,7 @@ using RentACar.Domain.Entities;
 namespace RentACar.Application.Features.Brands.Queries.GetList;
 public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDto>>
 {
-    public PageRequest PageRequest { get; set; } 
+    public PageRequest PageRequest { get; set; } = default!;
 
     public class GetListBrandQueryHandler : IRequestHandler<GetListBrandQuery, GetListResponse<GetListBrandListItemDto>>
     {
