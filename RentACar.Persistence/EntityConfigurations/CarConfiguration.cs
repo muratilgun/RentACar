@@ -4,21 +4,24 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 
 namespace RentACar.Persistence.EntityConfigurations;
-public class BrandConfiguration : IEntityTypeConfiguration<Brand>
+
+public class CarConfiguration : IEntityTypeConfiguration<Car>
 {
-    public void Configure(EntityTypeBuilder<Brand> builder)
+    public void Configure(EntityTypeBuilder<Car> builder)
     {
-        builder.ToTable("Brands").HasKey(b=> b.Id);
+        builder.ToTable("Cars").HasKey(b => b.Id);
 
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
-        builder.Property(b => b.Name).HasColumnName("Name").IsRequired();
+        builder.Property(b => b.ModelId).HasColumnName("ModelId").IsRequired();
+        builder.Property(b => b.Kilometer).HasColumnName("Kilometer").IsRequired();
+        builder.Property(b => b.CarState).HasColumnName("State");
+        builder.Property(b => b.ModelYear).HasColumnName("ModelYear").IsRequired();
         builder.Property(b => b.CreatedAt).HasColumnName("CreatedAt").IsRequired();
         builder.Property(b => b.UpdatedAt).HasColumnName("UpdatedAt");
         builder.Property(b => b.DeletedAt).HasColumnName("DeletedAt");
 
-        builder.HasIndex(b => b.Name, "UK_Brands_Name").IsUnique();
+        builder.HasOne(b => b.Model);
 
-        builder.HasMany(b => b.Models);
 
         builder.HasQueryFilter(b => !b.DeletedAt.HasValue);
     }
