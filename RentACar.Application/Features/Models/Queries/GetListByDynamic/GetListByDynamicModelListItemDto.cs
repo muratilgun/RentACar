@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RentACar.Application.Features.Models.Queries.GetListByDynamic;
+﻿namespace RentACar.Application.Features.Models.Queries.GetListByDynamic;
 public class GetListByDynamicModelListItemDto
 {
     public Guid Id { get; set; }

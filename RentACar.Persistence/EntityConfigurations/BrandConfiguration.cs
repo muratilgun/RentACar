@@ -1,6 +1,6 @@
-﻿using RentACar.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RentACar.Domain.Entities;
 
 
 namespace RentACar.Persistence.EntityConfigurations;
@@ -8,7 +8,7 @@ public class BrandConfiguration : IEntityTypeConfiguration<Brand>
 {
     public void Configure(EntityTypeBuilder<Brand> builder)
     {
-        builder.ToTable("Brands").HasKey(b=> b.Id);
+        builder.ToTable("Brands").HasKey(b => b.Id);
 
         builder.Property(b => b.Id).HasColumnName("Id").IsRequired();
         builder.Property(b => b.Name).HasColumnName("Name").IsRequired();

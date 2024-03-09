@@ -25,7 +25,7 @@ public class DeleteBrandCommand : IRequest<DeletedBrandResponse>
 
             await _brandRepository.DeleteAsync(brand);
 
-            var response =  _mapper.Map<DeletedBrandResponse>(brand);
+            var response = _mapper.Map<DeletedBrandResponse>(brand);
             return response;
         }
     }

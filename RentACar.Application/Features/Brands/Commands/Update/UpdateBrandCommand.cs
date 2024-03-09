@@ -22,15 +22,15 @@ public class UpdateBrandCommand : IRequest<UpdatedBrandResponse>
 
         public async Task<UpdatedBrandResponse> Handle(UpdateBrandCommand request, CancellationToken cancellationToken)
         {
-            Brand? brand = await _brandRepository.GetAsync(predicate:b=> b.Id == request.Id, cancellationToken: cancellationToken);
-            
+            Brand? brand = await _brandRepository.GetAsync(predicate: b => b.Id == request.Id, cancellationToken: cancellationToken);
+
             brand = _mapper.Map(request, brand);
-            
+
             await _brandRepository.UpdateAsync(brand);
 
             UpdatedBrandResponse response = _mapper.Map<UpdatedBrandResponse>(brand);
 
             return response;
         }
-    }   
+    }
 }

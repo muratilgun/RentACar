@@ -24,12 +24,12 @@ public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDt
 
         public async Task<GetListResponse<GetListBrandListItemDto>> Handle(GetListBrandQuery request, CancellationToken cancellationToken)
         {
-           Paginate<Brand> brands =  await _brandRepository.GetListAsync(
-                index: request.PageRequest.PageIndex,
-                size: request.PageRequest.PageSize,
-                cancellationToken: cancellationToken);
+            Paginate<Brand> brands = await _brandRepository.GetListAsync(
+                 index: request.PageRequest.PageIndex,
+                 size: request.PageRequest.PageSize,
+                 cancellationToken: cancellationToken);
 
-            GetListResponse<GetListBrandListItemDto> response =  _mapper.Map<GetListResponse<GetListBrandListItemDto>>(brands);
+            GetListResponse<GetListBrandListItemDto> response = _mapper.Map<GetListResponse<GetListBrandListItemDto>>(brands);
 
             return response;
         }

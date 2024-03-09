@@ -1,10 +1,10 @@
-﻿using RentACar.Domain.Entities;
-using RentACar.Persistence.Contexts;
-using Core.Persistence.Repositories;
+﻿using Core.Persistence.Repositories;
 using RentACar.Application.Services.Repositories;
+using RentACar.Domain.Entities;
+using RentACar.Persistence.Contexts;
 
 namespace RentACar.Persistence.Repositories;
 public class BrandRepository : EfRepositoryBase<Brand, Guid, BaseDbContext>, IBrandRepository
 {
-    public BrandRepository(BaseDbContext context) : base(context){}
+    public BrandRepository(BaseDbContext context) : base(context) { }
 }

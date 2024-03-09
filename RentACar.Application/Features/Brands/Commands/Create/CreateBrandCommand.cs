@@ -1,12 +1,13 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
+using AutoMapper;
+using Core.Application.Pipelines.Transaction;
 using RentACar.Application.Features.Brands.Rules;
-using RentACar.Application.Services.Repositories;
 using RentACar.Domain.Entities;
+using RentACar.Application.Services.Repositories;
 
 namespace RentACar.Application.Features.Brands.Commands.Create;
 
-public class CreateBrandCommand : IRequest<CreatedBrandResponse>
+public class CreateBrandCommand : IRequest<CreatedBrandResponse>, ITransactionalRequest
 {
     public string Name { get; set; } = default!;
 
@@ -28,8 +29,6 @@ public class CreateBrandCommand : IRequest<CreatedBrandResponse>
             CreateBrandCommand request,
             CancellationToken cancellationToken)
         {
-
-
             await _brandBusinessRules.BrandNameCannotBeDuplicatedWhenInserted(request.Name, cancellationToken);
 
             Brand brand = _mapper.Map<Brand>(request);
@@ -38,7 +37,6 @@ public class CreateBrandCommand : IRequest<CreatedBrandResponse>
             await _brandRepository.AddAsync(brand);
 
             CreatedBrandResponse response = _mapper.Map<CreatedBrandResponse>(brand);
-
 
             return response;
         }

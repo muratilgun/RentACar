@@ -1,6 +1,6 @@
-﻿using RentACar.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using RentACar.Domain.Entities;
 
 
 namespace RentACar.Persistence.EntityConfigurations;

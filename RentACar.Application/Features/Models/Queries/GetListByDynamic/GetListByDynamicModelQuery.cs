@@ -5,7 +5,6 @@ using Core.Persistence.Dynamic;
 using Core.Persistence.Paging;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using RentACar.Application.Features.Models.Queries.GetList;
 using RentACar.Application.Services.Repositories;
 using RentACar.Domain.Entities;
 

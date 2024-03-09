@@ -1,6 +1,5 @@
 ﻿using Core.Application.Requests;
 using Core.Application.Responses;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using RentACar.Application.Features.Brands.Commands.Create;
 using RentACar.Application.Features.Brands.Commands.Delete;
