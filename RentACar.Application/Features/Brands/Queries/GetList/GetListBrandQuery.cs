@@ -1,15 +1,22 @@
-﻿using AutoMapper;
+﻿using MediatR;
+using AutoMapper;
+using Core.Persistence.Paging;
+using RentACar.Domain.Entities;
 using Core.Application.Requests;
 using Core.Application.Responses;
-using Core.Persistence.Paging;
-using MediatR;
+using Core.Application.Pipelines.Caching;
 using RentACar.Application.Services.Repositories;
-using RentACar.Domain.Entities;
 
 namespace RentACar.Application.Features.Brands.Queries.GetList;
-public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDto>>
+public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDto>>, ICachableRequest
 {
     public PageRequest PageRequest { get; set; } = default!;
+
+    public string CacheKey => $"GetListBrandQuery({PageRequest.PageIndex},{PageRequest.PageSize})";
+
+    public bool BypassCache { get;}
+
+    public TimeSpan? SlidingExpiration { get; }
 
     public class GetListBrandQueryHandler : IRequestHandler<GetListBrandQuery, GetListResponse<GetListBrandListItemDto>>
     {
