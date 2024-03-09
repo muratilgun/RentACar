@@ -1,25 +1,22 @@
 ﻿using AutoMapper;
+using Core.Persistence.Paging;
 using RentACar.Domain.Entities;
 using Core.Application.Responses;
 using RentACar.Application.Features.Models.Queries.GetList;
+using RentACar.Application.Features.Models.Queries.GetListByDynamic;
 
 namespace RentACar.Application.Features.Models.Profiles;
 public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        //CreateMap<Model, CreateModelCommand>().ReverseMap();
-        //CreateMap<Model, CreatedModelResponse>().ReverseMap();
-
-        //CreateMap<Model, UpdateModelCommand>().ReverseMap();
-        //CreateMap<Model, UpdatedModelResponse>().ReverseMap();
-        
-        //CreateMap<Model, DeleteModelCommand>().ReverseMap();
-        //CreateMap<Model, DeletedModelResponse>().ReverseMap();
-        
+        //GetList
         CreateMap<Model, GetListModelListDto>().ReverseMap();
-        CreateMap<Core.Persistence.Paging.Paginate<Model>, GetListResponse<GetListModelListDto>>().ReverseMap();
+        CreateMap<Paginate<Model>, GetListResponse<GetListModelListDto>>().ReverseMap();
+        
+        //Dynamic Query
+        CreateMap<Model, GetListByDynamicModelListItemDto>().ReverseMap();
+        CreateMap<Paginate<Model>, GetListResponse<GetListByDynamicModelListItemDto>>().ReverseMap();
 
-        //CreateMap<Model, GetByIdModelResponse>().ReverseMap();
     }
 }
