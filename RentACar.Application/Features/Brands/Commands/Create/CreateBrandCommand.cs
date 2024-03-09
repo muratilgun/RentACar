@@ -28,6 +28,8 @@ public class CreateBrandCommand : IRequest<CreatedBrandResponse>
             CreateBrandCommand request,
             CancellationToken cancellationToken)
         {
+
+
             await _brandBusinessRules.BrandNameCannotBeDuplicatedWhenInserted(request.Name, cancellationToken);
 
             Brand brand = _mapper.Map<Brand>(request);
