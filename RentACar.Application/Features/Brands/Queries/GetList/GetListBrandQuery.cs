@@ -10,7 +10,7 @@ using RentACar.Application.Services.Repositories;
 namespace RentACar.Application.Features.Brands.Queries.GetList;
 public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDto>>, ICachableRequest
 {
-    public PageRequest PageRequest { get; set; }
+    public PageRequest PageRequest { get; set; } = null!;
 
     public string CacheKey => $"GetListBrandQuery({PageRequest.PageIndex},{PageRequest.PageSize})";
 

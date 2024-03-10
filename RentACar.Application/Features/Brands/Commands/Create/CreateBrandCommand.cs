@@ -4,12 +4,17 @@ using Core.Application.Pipelines.Transaction;
 using RentACar.Application.Features.Brands.Rules;
 using RentACar.Domain.Entities;
 using RentACar.Application.Services.Repositories;
+using Core.Application.Pipelines.Caching;
 
 namespace RentACar.Application.Features.Brands.Commands.Create;
 
-public class CreateBrandCommand : IRequest<CreatedBrandResponse>, ITransactionalRequest
+public class CreateBrandCommand : IRequest<CreatedBrandResponse>, ITransactionalRequest,ICacheRemoverRequest
 {
     public string Name { get; set; } = default!;
+
+    public string CacheKey => throw new NotImplementedException();
+
+    public bool BypassCache { get; }
 
     public class CreateBrandCommandHandler : IRequestHandler<CreateBrandCommand, CreatedBrandResponse>
     {
