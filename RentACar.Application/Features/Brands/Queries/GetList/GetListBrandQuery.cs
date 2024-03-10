@@ -6,9 +6,10 @@ using Core.Application.Requests;
 using Core.Application.Responses;
 using Core.Application.Pipelines.Caching;
 using RentACar.Application.Services.Repositories;
+using Core.Application.Pipelines.Logging;
 
 namespace RentACar.Application.Features.Brands.Queries.GetList;
-public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDto>>, ICachableRequest
+public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDto>>, ICachableRequest,ILoggableRequest
 {
     public PageRequest PageRequest { get; set; } = null!;
 

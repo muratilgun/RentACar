@@ -5,10 +5,11 @@ using RentACar.Application.Features.Brands.Rules;
 using RentACar.Domain.Entities;
 using RentACar.Application.Services.Repositories;
 using Core.Application.Pipelines.Caching;
+using Core.Application.Pipelines.Logging;
 
 namespace RentACar.Application.Features.Brands.Commands.Create;
 
-public class CreateBrandCommand : IRequest<CreatedBrandResponse>, ITransactionalRequest,ICacheRemoverRequest
+public class CreateBrandCommand : IRequest<CreatedBrandResponse>, ITransactionalRequest,ICacheRemoverRequest,ILoggableRequest
 {
     public string Name { get; set; } = default!;
 
