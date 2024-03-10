@@ -10,12 +10,11 @@ using RentACar.Application.Services.Repositories;
 namespace RentACar.Application.Features.Brands.Queries.GetList;
 public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDto>>, ICachableRequest
 {
-    public PageRequest PageRequest { get; set; } = default!;
+    public PageRequest PageRequest { get; set; }
 
     public string CacheKey => $"GetListBrandQuery({PageRequest.PageIndex},{PageRequest.PageSize})";
 
-    public bool BypassCache { get;}
-
+    public bool BypassCache { get; }
     public TimeSpan? SlidingExpiration { get; }
 
     public class GetListBrandQueryHandler : IRequestHandler<GetListBrandQuery, GetListResponse<GetListBrandListItemDto>>
@@ -32,13 +31,15 @@ public class GetListBrandQuery : IRequest<GetListResponse<GetListBrandListItemDt
         public async Task<GetListResponse<GetListBrandListItemDto>> Handle(GetListBrandQuery request, CancellationToken cancellationToken)
         {
             Paginate<Brand> brands = await _brandRepository.GetListAsync(
-                 index: request.PageRequest.PageIndex,
-                 size: request.PageRequest.PageSize,
-                 cancellationToken: cancellationToken);
+                index: request.PageRequest.PageIndex,
+                size: request.PageRequest.PageSize,
+                cancellationToken: cancellationToken,
+                withDeleted: true
+                );
 
             GetListResponse<GetListBrandListItemDto> response = _mapper.Map<GetListResponse<GetListBrandListItemDto>>(brands);
-
             return response;
+
         }
     }
 }
