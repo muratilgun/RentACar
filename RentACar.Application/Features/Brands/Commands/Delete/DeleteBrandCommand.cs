@@ -1,13 +1,18 @@
 ﻿using AutoMapper;
+using Core.Application.Pipelines.Caching;
 using MediatR;
 using RentACar.Application.Services.Repositories;
 using RentACar.Domain.Entities;
 
 namespace RentACar.Application.Features.Brands.Commands.Delete;
-public class DeleteBrandCommand : IRequest<DeletedBrandResponse>
+public class DeleteBrandCommand : IRequest<DeletedBrandResponse>, ICacheRemoverRequest
 {
     public Guid Id { get; set; }
+    public string CacheKey => string.Empty;
 
+    public bool BypassCache { get; }
+
+    public string? CacheGroupKey => "GetBrands";
     public class DeleteBrandCommandHandler : IRequestHandler<DeleteBrandCommand, DeletedBrandResponse>
     {
         private readonly IBrandRepository _brandRepository;

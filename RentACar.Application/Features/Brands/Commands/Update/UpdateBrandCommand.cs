@@ -1,14 +1,19 @@
 ﻿using AutoMapper;
+using Core.Application.Pipelines.Caching;
 using MediatR;
 using RentACar.Application.Services.Repositories;
 using RentACar.Domain.Entities;
 
 namespace RentACar.Application.Features.Brands.Commands.Update;
-public class UpdateBrandCommand : IRequest<UpdatedBrandResponse>
+public class UpdateBrandCommand : IRequest<UpdatedBrandResponse>, ICacheRemoverRequest
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = default!;
+    public string CacheKey => string.Empty;
 
+    public bool BypassCache { get; }
+
+    public string? CacheGroupKey => "GetBrands";
     public class UpdateBrandCommandHandler : IRequestHandler<UpdateBrandCommand, UpdatedBrandResponse>
     {
         private readonly IBrandRepository _brandRepository;

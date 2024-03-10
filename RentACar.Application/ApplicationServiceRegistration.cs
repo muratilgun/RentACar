@@ -23,6 +23,7 @@ public static class ApplicationServiceRegistration
             c.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
             c.AddOpenBehavior(typeof(TransactionScopeBehavior<,>));
             c.AddOpenBehavior(typeof(CachingBehavior<,>));
+            c.AddOpenBehavior(typeof(CacheRemovingBehavior<,>));
         });
 
         return services;
