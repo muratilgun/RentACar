@@ -5,9 +5,9 @@ using RentACar.Persistence.Contexts;
 
 namespace RentACar.Persistence.Repositories;
 
-public class EmailAuthenticationRepository : EfRepositoryBase<EmailAuthenticator, Guid, BaseDbContext>, IEmailAuthenticatorRepository
+public class EmailAuthenticatorRepository : EfRepositoryBase<EmailAuthenticator, Guid, BaseDbContext>, IEmailAuthenticatorRepository
 {
-    public EmailAuthenticationRepository(BaseDbContext context) : base(context)
+    public EmailAuthenticatorRepository(BaseDbContext context) : base(context)
     {
     }
 }
