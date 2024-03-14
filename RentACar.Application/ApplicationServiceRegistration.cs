@@ -2,6 +2,7 @@
 using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Transaction;
 using Core.Application.Pipelines.Validation;
+using Core.Application.Pipelines.Authorization;
 using Core.Application.Rules;
 using Core.CrossCuttingConcerns.Serilog;
 using Core.CrossCuttingConcerns.Serilog.Loggers;
@@ -28,6 +29,7 @@ public static class ApplicationServiceRegistration
             c.AddOpenBehavior(typeof(CachingBehavior<,>));
             c.AddOpenBehavior(typeof(CacheRemovingBehavior<,>));
             c.AddOpenBehavior(typeof(LoggingBehavior<,>));
+            c.AddOpenBehavior(typeof(AuthorizationBehavior<,>));
         });
 
         services.AddSingleton<LoggerServiceBase,MsSqlLogger>();
